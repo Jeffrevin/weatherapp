@@ -3,9 +3,9 @@ import Result from "./Result";
 
 const SearchResults = () => {
   return (
-    <div className="p-5 rounded">
+    <div className="p-5 rounded bg-indigo-400">
       <header>
-        <h2 className="text-center text-3xl text-white">
+        <h2 className="text-center text-3xl text-black">
           Search Results
         </h2>
       </header>

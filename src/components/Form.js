@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 
 const Form = () => {
+  const [fieldVal, setFieldVal] = useState("");
+  const handleClearLocation = (e) => {
+    e.preventDefault();
+  };
+  const handleSearchLocation = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <form className="p-3 bg-gray-100 rounded shadow">
       <article className="flex flex-col">
@@ -39,5 +48,7 @@ const Form = () => {
     </form>
   );
 };
+
+const mapDispatch = () => {};
 
 export default Form;

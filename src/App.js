@@ -5,7 +5,7 @@ import SearchResults from "./components/SearchResults";
 
 function App() {
   return (
-    <div className="bg-gray-800">
+    <div className="bg-gray-900">
       <header className="bg-indigo-500 text-center text-6xl h-40">
         Weather App
       </header>
