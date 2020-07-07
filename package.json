@@ -15,14 +15,14 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "npm-run-all --parallel watch:css start:js",
+    "start": "npm run watch:css && npm run start:js",
     "start:js": "react-scripts start",
-    "build": "npm-run-all build:css build:js",
+    "build": "npm run build:css && npm run build:js",
     "build:js": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css -w",
-    "build:css": "postcss src/css/tailwind.src.css -o src/tailwind.css --env production"
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css --env production"
   },
   "eslintConfig": {
     "extends": "react-app"
