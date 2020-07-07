@@ -3,11 +3,18 @@ import Result from "./Result";
 
 const SearchResults = () => {
   return (
-    <article className="grid grid-cols-2">
-      <Result />
-      <Result />
-    </article>
+    <div className="p-5 rounded">
+      <header>
+        <h2 className="text-center text-3xl text-white">
+          Search Results
+        </h2>
+      </header>
+      <article className="flex flex-col">
+        <Result />
+        <Result />
+      </article>
+    </div>
   );
 };
 
-export default SearchResult;
+export default SearchResults;

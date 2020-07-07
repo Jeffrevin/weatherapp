@@ -2,7 +2,10 @@ import React from "react";
 
 const Card = (props) => {
   return (
-    <article className="flex flex-col justify-center bg-gray-200 text-gray-800 rounded-sm">
+    <article
+      className="flex flex-col justify-center bg-gray-200
+    text-gray-800 rounded-sm hover:shadow-md"
+    >
       <h3 className="text-center text-3xl text-gray-900">
         TEMP&deg;
       </h3>
