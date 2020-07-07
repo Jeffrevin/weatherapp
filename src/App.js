@@ -1,12 +1,17 @@
 import React from "react";
+import Form from "./components/Form";
+import CardList from "./components/CardList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="bg-blue-500 text-center text-6xl">
+    <div className="App bg-gray-800">
+      <header className="bg-indigo-500 text-center text-6xl h-40">
         Weather App
       </header>
-      <div className="bg-red-400">RED BG</div>
+      <main className="container mx-auto -my-12">
+        <Form />
+        <CardList />
+      </main>
     </div>
   );
 }
