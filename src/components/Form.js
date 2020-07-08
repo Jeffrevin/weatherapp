@@ -3,8 +3,12 @@ import { connect } from "react-redux";
 
 const Form = () => {
   const [fieldVal, setFieldVal] = useState("");
+  const handleTypeLocation = (e) => {
+    setFieldVal(e.target.value);
+  };
   const handleClearLocation = (e) => {
     e.preventDefault();
+    setFieldVal("");
   };
   const handleSearchLocation = (e) => {
     e.preventDefault();
@@ -25,6 +29,7 @@ const Form = () => {
             border-gray-600 focus:outline-none focus:border-indigo-700
             focus:bg-gray-200 duration-100 focus:placeholder-gray-500
             focus:shadow-md"
+            onChange={handleTypeLocation}
             type="text"
             placeholder="Location name"
             name=""
@@ -33,6 +38,7 @@ const Form = () => {
           <button
             className="bg-indigo-600 hover:bg-indigo-700 duration-100 text-lg 
           px-2 py-1 rounded-sm text-white focus:outline-none hover:shadow-md"
+            onClick={handleSearchLocation}
           >
             Submit
           </button>
@@ -40,6 +46,7 @@ const Form = () => {
             className="border-2 border-pink-700 duration-100 text-lg
           px-2 py-1 ml-3 rounded-sm text-pink-700 focus:outline-none
           hover:bg-pink-700 hover:text-white hover:shadow-md"
+            onClick={handleClearLocation}
           >
             Clear
           </button>
