@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { searchLocation } from "../store/weather/weatherAction";
 
 const Form = (props) => {
-  console.log(process.env.REACT_APP_API_KEY);
   const [fieldVal, setFieldVal] = useState("");
   const handleTypeLocation = (e) => {
     setFieldVal(e.target.value);
@@ -18,7 +17,7 @@ const Form = (props) => {
   };
 
   return (
-    <form className="p-3 bg-gray-100 rounded shadow">
+    <form className="p-3 w-full bg-gray-100 rounded shadow">
       <article className="flex flex-col">
         <label
           className="text-lg text-indigo-800 font-bold"
@@ -33,6 +32,7 @@ const Form = (props) => {
             focus:bg-gray-200 duration-100 focus:placeholder-gray-500
             focus:shadow-md"
             onChange={handleTypeLocation}
+            value={fieldVal}
             type="text"
             placeholder="Location name"
             name=""

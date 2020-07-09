@@ -2,4 +2,8 @@
 
 @import "tailwindcss/components";
 
+.material-icons {
+  cursor: default;
+}
+
 @import "tailwindcss/utilities";

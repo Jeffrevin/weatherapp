@@ -14,7 +14,6 @@ const CardList = () => {
         <Card />
         <Card />
         <Card />
-        <Card />
       </article>
     </section>
   );
