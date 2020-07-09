@@ -20,9 +20,8 @@ const searchLocationFailureObj = (err) => {
 export const searchLocation = (fieldVal) => {
   return async (dispatch) => {
     try {
-      const API = "https://www.metaweather.com/api/";
       const searchResult = await axios.get(
-        `${API}/location/search/?query=${fieldVal}`
+        `api.openweathermap.org/data/2.5/weather?q=${fieldVal}&appid${process.env.REACT_APP_API_KEY}`
       );
       console.log(searchResult);
       dispatch(searchLocationSuccessObj(searchResult));

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { searchLocation } from "../store/weather/weatherAction";
 
-const Form = () => {
+const Form = (props) => {
+  console.log(process.env.REACT_APP_API_KEY);
   const [fieldVal, setFieldVal] = useState("");
   const handleTypeLocation = (e) => {
     setFieldVal(e.target.value);
@@ -12,6 +14,7 @@ const Form = () => {
   };
   const handleSearchLocation = (e) => {
     e.preventDefault();
+    props.searchLocation(fieldVal);
   };
 
   return (
@@ -56,6 +59,12 @@ const Form = () => {
   );
 };
 
-const mapDispatch = () => {};
+const mapDispatch = (dispatch) => {
+  return {
+    searchLocation: (fieldVal) => {
+      dispatch(searchLocation(fieldVal));
+    },
+  };
+};
 
-export default Form;
+export default connect(null, mapDispatch)(Form);

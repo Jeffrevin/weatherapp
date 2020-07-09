@@ -11,9 +11,8 @@ const initialState = {
 const weatherReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_LOCATION_SUCCESS:
-      return {
-        searchResult: state.searchResult,
-      };
+      console.log(state, action);
+      return state;
     case SEARCH_LOCATION_FAILURE:
       return state;
     case SEARCH_CLEAR:
