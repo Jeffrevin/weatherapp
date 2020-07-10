@@ -6,3 +6,4 @@ export const SEARCH_CLEAR = "SEARCH_CLEAR";
 // searching status
 export const NOT_SEARCHING = "NOT_SEARCHING";
 export const SEARCHED = "SEARCHED";
+export const FAILED_SEARCH = "FAILED_SEARCH";

@@ -4,6 +4,7 @@ import {
   SEARCH_LOCATION_FAILURE,
   SEARCHED,
   NOT_SEARCHING,
+  FAILED_SEARCH,
 } from "../../constants/weatherTypes";
 
 const initialState = {
@@ -25,9 +26,14 @@ const weatherReducer = (state = initialState, action) => {
         searchHourly: action.searchHourly,
         searchDaily: action.searchDaily,
         searchCurrent: action.searchCurrent,
+        timestamp: action.timestamp,
       };
     case SEARCH_LOCATION_FAILURE:
-      return state;
+      // return state;
+      return {
+        ...state,
+        searchStatus: FAILED_SEARCH,
+      };
     case SEARCH_CLEAR:
       return {
         ...state,
