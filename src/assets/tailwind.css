@@ -6,4 +6,83 @@
   cursor: default;
 }
 
+.mainCard-enter {
+  opacity: 0;
+  transform: scale(0);
+}
+.mainCard-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 200ms;
+}
+.mainCard-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.mainCard-exit-active {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 200ms;
+}
+
+.moreInfo-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.moreInfo-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 200ms;
+}
+.moreInfo-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.moreInfo-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 200ms;
+}
+
+.notSearchingAlert-enter {
+  opacity: 0;
+}
+.notSearchingAlert-enter-active {
+  opacity: 1;
+  transition: all 200ms;
+}
+.notSearchingAlert-exit {
+  opacity: 1;
+}
+.notSearchingAlert-exit-active {
+  opacity: 0;
+  transition: all 200ms;
+}
+
+.failedSearchAlert-enter {
+  opacity: 0;
+}
+.failedSearchAlert-enter-active {
+  opacity: 1;
+  transition: all 200ms;
+}
+.failedSearchAlert-exit {
+  opacity: 1;
+}
+.failedSearchAlert-exit-active {
+  opacity: 0;
+  transition: all 200ms;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  transition: height 350ms;
+}
+#root {
+  height: 100%;
+}
+
 @import "tailwindcss/utilities";

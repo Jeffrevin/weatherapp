@@ -1,60 +1,90 @@
 import React from "react";
+import convertTime from "../helpers/convertTime";
 
 const Card = (props) => {
   return (
-    // <article
-    //   className="flex flex-col justify-center bg-gray-200
-    // text-gray-800 rounded-sm hover:shadow-md"
-    // >
-    //   <h3 className="text-center text-3xl text-gray-900">
-    //     TEMP&deg;
-    //   </h3>
-    //   <img
-    //     className="w-full"
-    //     src="https://picsum.photos/200"
-    //     alt=""
-    //   />
-    //   <section className="p-2">
-    //     <p>62</p>
-    //     <p>69</p>
-    //   </section>
-    // </article>
-    <article className="p-5 my-5 rounded text-center text-white bg-gray-600 flex flex-col items-center shadow hover:shadow-md">
-      <header className="flex flex-col items-center">
-        <section className="flex flex-row items-center">
-          <i className="material-icons text-red-600 text-4xl">
-            place
-          </i>
-          <h2 className="text-md font-semibold">
-            {props.searchResult.name},{" "}
-            {props.searchResult.sys.country}
-          </h2>
-        </section>
-        <h4 className="text-sm text-gray-100 font-thin">
-          As of {props.timestamp}
-        </h4>
-      </header>
-      <section className="flex flex-col items-center">
-        <h2 className="text-5xl font-semibold">
-          {Math.round(props.searchResult.main.temp)}&deg;F
-        </h2>
-        <p className="text-lg font-thin text-gray-100">
-          {Math.round(props.searchResult.main.temp_max)}&deg;F/
-          {Math.round(props.searchResult.main.temp_min)}&deg;F
-        </p>
-        <img
-          src={`http://openweathermap.org/img/wn/${props.searchResult.weather[0].icon}@2x.png`}
-          alt={props.searchResult.weather[0].description}
-        />
-        <p className="font-light text-gray-100">
-          Feels like {Math.round(props.searchResult.main.feels_like)}
-          &deg;F
-        </p>
-        <h3 className="text-3xl">
-          {props.searchResult.weather[0].main}
-        </h3>
-      </section>
-    </article>
+    <>
+      <article
+        className="p-5 my-5 text-center text-white bg-gray-600
+      mx-auto max-w-sm rounded-sm"
+      >
+        <header className="flex flex-col items-center mb-4">
+          <section className="flex flex-row items-center">
+            <i className="material-icons text-red-600 text-4xl">
+              place
+            </i>
+            <h2 className="text-lg font-semibold">
+              {props.searchResult.name},{" "}
+              {props.searchResult.sys.country}
+            </h2>
+          </section>
+          <time className="text-sm text-gray-100 font-thin">
+            As of {props.timestamp}
+          </time>
+        </header>
+        <div className="flex flex-row justify-between px-3">
+          <section className="flex flex-col-reverse items-center">
+            <h2 className="text-3xl font-semibold -mt-6">
+              {Math.round(props.searchResult.main.temp)}&deg;F
+            </h2>
+            <img
+              src={`http://openweathermap.org/img/wn/${
+                props.searchResult.weather.sort(
+                  (a, b) => b.id - a.id
+                )[props.searchResult.weather.length - 1].icon
+              }@2x.png`}
+              alt={
+                props.searchResult.weather[
+                  props.searchResult.weather.length - 1
+                ].description
+              }
+            />
+          </section>
+          <section className="flex flex-col justify-around py-2 text-right mr-2">
+            <p className="text-md text-gray-100 w-32">
+              Feels like{" "}
+              {Math.round(props.searchResult.main.feels_like)}
+              &deg;F
+            </p>
+            <p className="text-md text-gray-100 w-32">
+              {Math.round(props.searchResult.main.temp_max)}&deg;F/
+              {Math.round(props.searchResult.main.temp_min)}&deg;F
+            </p>
+            <p className="text-md text-gray-100 w-32">
+              {props.searchResult.weather[
+                props.searchResult.weather.length - 1
+              ].description.replace(/\b[a-z]/g, (char) =>
+                char.toUpperCase()
+              )}
+            </p>
+          </section>
+        </div>
+        <hr className="w-full border border-gray-700 round my-2" />
+        <article className="flex flex-row">
+          {props.searchHourly.map((hour, index) => {
+            if (index <= 5) {
+              return (
+                <section
+                  key={hour.dt}
+                  className="flex flex-col py-1 px-1 bg-gray-500 rounded mx-1 shadow hover:shadow-lg duration-100"
+                >
+                  <p className="text-gray-100 text-xs">
+                    {convertTime(hour.dt, false)}
+                  </p>
+                  <img
+                    src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
+                    alt=""
+                  />
+                  <h3>{Math.round(hour.temp)}&deg;F</h3>
+                </section>
+              );
+            } else {
+              return <React.Fragment key={hour.dt}></React.Fragment>;
+            }
+          })}
+        </article>
+      </article>
+    </>
   );
 };
 

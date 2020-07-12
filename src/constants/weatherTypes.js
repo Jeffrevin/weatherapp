@@ -7,3 +7,6 @@ export const SEARCH_CLEAR = "SEARCH_CLEAR";
 export const NOT_SEARCHING = "NOT_SEARCHING";
 export const SEARCHED = "SEARCHED";
 export const FAILED_SEARCH = "FAILED_SEARCH";
+
+export const INFO_OPENED = "INFO_OPENED";
+export const INFO_CLOSED = "INFO_CLOSED";

@@ -1,9 +1,11 @@
 import axios from "axios";
-import moment from "moment";
+import convertTime from "../../helpers/convertTime";
 import {
   SEARCH_LOCATION_SUCCESS,
   SEARCH_LOCATION_FAILURE,
   SEARCH_CLEAR,
+  INFO_CLOSED,
+  INFO_OPENED,
 } from "../../constants/weatherTypes";
 
 const searchLocationSuccessObj = (
@@ -17,6 +19,7 @@ const searchLocationSuccessObj = (
     searchHourly: searchIntervals.hourly,
     searchDaily: searchIntervals.daily,
     searchCurrent: searchIntervals.current,
+    searchMinutely: searchIntervals.minutely,
     timestamp,
   };
 };
@@ -33,17 +36,15 @@ export const searchLocation = (fieldVal) => {
         `http://api.openweathermap.org/data/2.5/weather?q=${fieldVal}&appid=${process.env.REACT_APP_API_KEY}&units=imperial`
       );
       console.log(searchResult.data);
-      const time = moment(searchResult.data.dt * 1000);
-      const timestamp = time.format("M/DD/YYYY h:mm A");
       const searchIntervals = await axios.get(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${searchResult.data.coord.lat}&lon=${searchResult.data.coord.lon}&exclude=minutely&appid=${process.env.REACT_APP_API_KEY}&units=imperial`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${searchResult.data.coord.lat}&lon=${searchResult.data.coord.lon}&appid=${process.env.REACT_APP_API_KEY}&units=imperial`
       );
       console.log(searchIntervals.data);
       dispatch(
         searchLocationSuccessObj(
           searchResult.data,
           searchIntervals.data,
-          timestamp
+          convertTime(searchResult.data.dt)
         )
       );
     } catch (err) {
@@ -56,5 +57,17 @@ export const searchLocation = (fieldVal) => {
 export const searchClear = () => {
   return {
     type: SEARCH_CLEAR,
+  };
+};
+
+export const infoClosed = () => {
+  return {
+    type: INFO_CLOSED,
+  };
+};
+
+export const infoOpened = () => {
+  return {
+    type: INFO_OPENED,
   };
 };

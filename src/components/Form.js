@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { searchLocation } from "../store/weather/weatherAction";
+import {
+  searchLocation,
+  searchClear,
+  infoClosed,
+} from "../store/weather/weatherAction";
 
 const Form = (props) => {
   const [fieldVal, setFieldVal] = useState("");
@@ -10,6 +14,8 @@ const Form = (props) => {
   const handleClearLocation = (e) => {
     e.preventDefault();
     setFieldVal("");
+    props.searchClear();
+    props.infoClosed();
   };
   const handleSearchLocation = (e) => {
     e.preventDefault();
@@ -39,7 +45,7 @@ const Form = (props) => {
             id=""
           />
           <button
-            className="bg-indigo-600 hover:bg-indigo-700 duration-100 text-lg 
+            className="bg-indigo-600 hover:bg-indigo-700 duration-100 text-lg
           px-2 py-1 rounded-sm text-white focus:outline-none hover:shadow-md"
             onClick={handleSearchLocation}
           >
@@ -63,6 +69,12 @@ const mapDispatch = (dispatch) => {
   return {
     searchLocation: (fieldVal) => {
       dispatch(searchLocation(fieldVal));
+    },
+    searchClear: () => {
+      dispatch(searchClear());
+    },
+    infoClosed: () => {
+      dispatch(infoClosed());
     },
   };
 };

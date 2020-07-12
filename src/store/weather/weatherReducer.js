@@ -5,6 +5,8 @@ import {
   SEARCHED,
   NOT_SEARCHING,
   FAILED_SEARCH,
+  INFO_OPENED,
+  INFO_CLOSED,
 } from "../../constants/weatherTypes";
 
 const initialState = {
@@ -13,7 +15,9 @@ const initialState = {
   searchIntervals: {},
   searchHourly: {},
   searchDaily: {},
+  searchMinutely: {},
   searchCurrent: {},
+  detailedInfoIsOpen: false,
 };
 
 const weatherReducer = (state = initialState, action) => {
@@ -26,10 +30,11 @@ const weatherReducer = (state = initialState, action) => {
         searchHourly: action.searchHourly,
         searchDaily: action.searchDaily,
         searchCurrent: action.searchCurrent,
+        searchMinutely: action.searchMinutely,
         timestamp: action.timestamp,
+        detailedInfoIsOpen: action.detailedInfoStatus,
       };
     case SEARCH_LOCATION_FAILURE:
-      // return state;
       return {
         ...state,
         searchStatus: FAILED_SEARCH,
@@ -38,6 +43,18 @@ const weatherReducer = (state = initialState, action) => {
       return {
         ...state,
         searchStatus: NOT_SEARCHING,
+      };
+    case INFO_OPENED:
+      return {
+        ...state,
+        type: action.type,
+        detailedInfoIsOpen: true,
+      };
+    case INFO_CLOSED:
+      return {
+        ...state,
+        type: INFO_CLOSED,
+        detailedInfoIsOpen: false,
       };
     default:
       return state;
