@@ -5,8 +5,9 @@ const Card = (props) => {
   return (
     <>
       <article
-        className="p-5 my-5 text-center text-white bg-gray-600
-      mx-auto max-w-sm rounded-sm"
+        className={`p-5 text-center text-white bg-gray-600
+        mx-auto w-full h-full rounded-sm flex flex-col items-stretch
+        justify-between ${props.gridSpan || ""}`}
       >
         <header className="flex flex-col items-center mb-4">
           <section className="flex flex-row items-center">
@@ -66,7 +67,8 @@ const Card = (props) => {
               return (
                 <section
                   key={hour.dt}
-                  className="flex flex-col py-1 px-1 bg-gray-500 rounded mx-1 shadow hover:shadow-lg duration-100"
+                  className="flex flex-col py-1 px-1 bg-gray-500 rounded
+                  mx-1 shadow hover:shadow-lg duration-100 flex-1"
                 >
                   <p className="text-gray-100 text-xs">
                     {convertTime(hour.dt, false)}
