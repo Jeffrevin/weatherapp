@@ -74,6 +74,26 @@
   transition: all 200ms;
 }
 
+.bgImg {
+  background-image: url("https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1261&q=80");
+  background-image: url("https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1261&q=80"),
+    linear-gradient(rgba(0, 0, 0, 0.5, 0, 0, 0, 0.6));
+  background-size: cover;
+}
+
+.currentSections {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.statusAlert {
+  @apply my-5 text-white text-center absolute;
+  top: 50%;
+}
+.weatherCard {
+  @apply bg-gray-600 rounded-sm mx-auto w-full shadow text-white p-5;
+}
+
 html,
 body {
   height: 100%;

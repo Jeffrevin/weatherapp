@@ -32,7 +32,7 @@ const weatherReducer = (state = initialState, action) => {
         searchCurrent: action.searchCurrent,
         searchMinutely: action.searchMinutely,
         timestamp: action.timestamp,
-        detailedInfoIsOpen: action.detailedInfoStatus,
+        detailedInfoIsOpen: action.detailedInfoIsOpen,
       };
     case SEARCH_LOCATION_FAILURE:
       return {

@@ -2,7 +2,7 @@ import React from "react";
 
 const StatusAlert = (props) => {
   return (
-    <section className="my-5 text-white text-center">
+    <section className="statusAlert">
       <i
         className={`material-icons text-6xl ${
           props.iconColor || "text-gray-400 "

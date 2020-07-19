@@ -5,8 +5,7 @@ const Card = (props) => {
   return (
     <>
       <article
-        className={`p-5 text-center text-white bg-gray-600
-        mx-auto w-full h-full rounded-sm flex flex-col items-stretch
+        className={`weatherCard flex flex-col items-stretch
         justify-between ${props.gridSpan || ""}`}
       >
         <header className="flex flex-col items-center mb-4">
@@ -14,7 +13,7 @@ const Card = (props) => {
             <i className="material-icons text-red-600 text-4xl">
               place
             </i>
-            <h2 className="text-lg font-semibold">
+            <h2 className="text-xl font-semibold">
               {props.searchResult.name},{" "}
               {props.searchResult.sys.country}
             </h2>
@@ -25,7 +24,7 @@ const Card = (props) => {
         </header>
         <div className="flex flex-row justify-between px-3">
           <section className="flex flex-col-reverse items-center">
-            <h2 className="text-3xl font-semibold -mt-6">
+            <h2 className="text-5xl font-semibold -mt-6">
               {Math.round(props.searchResult.main.temp)}&deg;F
             </h2>
             <img
@@ -41,17 +40,17 @@ const Card = (props) => {
               }
             />
           </section>
-          <section className="flex flex-col justify-around py-2 text-right mr-2">
-            <p className="text-md text-gray-100 w-32">
+          <section className="flex flex-col justify-around py-2 text-right mr-2 text-lg">
+            <p className="text-gray-100 w-40">
               Feels like{" "}
               {Math.round(props.searchResult.main.feels_like)}
               &deg;F
             </p>
-            <p className="text-md text-gray-100 w-32">
+            <p className="text-gray-100 w-40">
               {Math.round(props.searchResult.main.temp_max)}&deg;F/
               {Math.round(props.searchResult.main.temp_min)}&deg;F
             </p>
-            <p className="text-md text-gray-100 w-32">
+            <p className="text-gray-100 w-40">
               {props.searchResult.weather[
                 props.searchResult.weather.length - 1
               ].description.replace(/\b[a-z]/g, (char) =>
@@ -68,16 +67,19 @@ const Card = (props) => {
                 <section
                   key={hour.dt}
                   className="flex flex-col py-1 px-1 bg-gray-500 rounded
-                  mx-1 shadow hover:shadow-lg duration-100 flex-1"
+                  mx-1 shadow hover:shadow-lg duration-100 flex-1 text-center"
                 >
-                  <p className="text-gray-100 text-xs">
+                  <p className="text-xs text-gray-200 sm:text-lg">
                     {convertTime(hour.dt, false)}
                   </p>
                   <img
+                    className="cardImage"
                     src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
-                    alt=""
+                    alt={hour.weather[0].description}
                   />
-                  <h3>{Math.round(hour.temp)}&deg;F</h3>
+                  <h3 className="text-sm font-semibold sm:text-3xl">
+                    {Math.round(hour.temp)}&deg;F
+                  </h3>
                 </section>
               );
             } else {

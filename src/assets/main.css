@@ -690,6 +690,45 @@ video {
   transition: all 200ms;
 }
 
+.bgImg {
+  background-image: url("https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1261&q=80");
+  background-image: url("https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1261&q=80"),
+    linear-gradient(rgba(0, 0, 0, 0.5, 0, 0, 0, 0.6));
+  background-size: cover;
+}
+
+.currentSections {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.statusAlert {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  text-align: center;
+  position: absolute;
+  top: 50%;
+}
+
+.weatherCard {
+  --bg-opacity: 1;
+  background-color: #718096;
+  background-color: rgba(113, 128, 150, var(--bg-opacity));
+  border-radius: 0.125rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  padding: 1.25rem;
+}
+
 html,
 body {
   height: 100%;

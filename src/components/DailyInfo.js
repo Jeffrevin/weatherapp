@@ -12,24 +12,24 @@ const DailyInfo = (props) => {
     //   unmountOnExit
     // >
     <article
-      className={`bg-gray-600 rounded-sm mx-auto w-full shadow
-      text-white p-5 divide-y divide-gray-700 flex flex-col justify-between
+      className={`weatherCard
+      divide-y divide-gray-700 flex flex-col justify-between
       ${props.gridSpan || ""}`}
     >
       {props.searchDaily.map((day, index) => {
         return index !== 0 ? (
           <section
-            className="flex flex-row justify-between items-center"
+            className="flex flex-row justify-between items-center h-full md:flex-col lg:flex-row"
             key={day.dt}
           >
             <p className="text-lg">{getDayOfWeek(day.dt)}</p>
-            <div className="flex flex-row-reverse items-center">
+            <div className="flex flex-row-reverse items-center md:w-full md:justify-between lg:justify-start">
               <p className="text-lg">
                 {Math.round(day.temp.max)}&deg;F/
                 {Math.round(day.temp.min)}&deg;F
               </p>
               <img
-                className="w-10 mr-3"
+                className="w-10 ml-2 md:m-0"
                 src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt={day.weather[0].description}
               />
@@ -37,17 +37,17 @@ const DailyInfo = (props) => {
           </section>
         ) : (
           <section
-            className="flex flex-row justify-between items-center"
+            className="flex flex-row justify-between items-center h-full md:flex-col lg:flex-row"
             key={day.dt}
           >
             <p className="text-lg">Today</p>
-            <div className="flex flex-row-reverse items-center">
+            <div className="flex flex-row-reverse items-center md:w-full md:justify-between lg:justify-start">
               <p className="text-lg">
                 {Math.round(day.temp.max)}&deg;F/
                 {Math.round(day.temp.min)}&deg;F
               </p>
               <img
-                className="w-10 mr-3"
+                className="w-10 ml-2 md:m-0"
                 src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt={day.weather[0].description}
               />
