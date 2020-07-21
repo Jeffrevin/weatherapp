@@ -2,7 +2,7 @@ import React from "react";
 
 const InfoSection = (props) => {
   return (
-    <div className="flex flex-row justify-between py-2 px-1 h-full">
+    <div className="flex flex-row justify-between items-center py-2 px-1 h-full">
       <div className="flex flex-row items-center">
         {props.icon && (
           <i className={`material-icons mr-2 ${props.iconColor}`}>

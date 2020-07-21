@@ -610,86 +610,6 @@ video {
   cursor: default;
 }
 
-.mainCard-enter {
-  opacity: 0;
-  transform: scale(0);
-}
-
-.mainCard-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 200ms;
-}
-
-.mainCard-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.mainCard-exit-active {
-  opacity: 0;
-  transform: scale(0);
-  transition: all 200ms;
-}
-
-.moreInfo-enter {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.moreInfo-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 200ms;
-}
-
-.moreInfo-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.moreInfo-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 200ms;
-}
-
-.notSearchingAlert-enter {
-  opacity: 0;
-}
-
-.notSearchingAlert-enter-active {
-  opacity: 1;
-  transition: all 200ms;
-}
-
-.notSearchingAlert-exit {
-  opacity: 1;
-}
-
-.notSearchingAlert-exit-active {
-  opacity: 0;
-  transition: all 200ms;
-}
-
-.failedSearchAlert-enter {
-  opacity: 0;
-}
-
-.failedSearchAlert-enter-active {
-  opacity: 1;
-  transition: all 200ms;
-}
-
-.failedSearchAlert-exit {
-  opacity: 1;
-}
-
-.failedSearchAlert-exit-active {
-  opacity: 0;
-  transition: all 200ms;
-}
-
 .bgImg {
   background-image: url("https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1261&q=80");
   background-image: url("https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1261&q=80"),
@@ -726,16 +646,10 @@ video {
   --text-opacity: 1;
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
-  padding: 1.25rem;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  transition: height 350ms;
+.bg {
+  z-index: -1;
 }
 
 #root {

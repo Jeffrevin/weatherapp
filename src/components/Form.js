@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { motion } from "framer-motion";
 import {
   searchLocation,
   searchClear,
   infoClosed,
 } from "../store/weather/weatherAction";
+
+const variants = {
+  initial: { scale: 0, opacity: 0 },
+  animate: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
 
 const Form = (props) => {
   const [fieldVal, setFieldVal] = useState("");
@@ -23,7 +35,12 @@ const Form = (props) => {
   };
 
   return (
-    <form className="p-3 w-full bg-gray-100 rounded shadow">
+    <motion.form
+      className="p-3 w-full bg-gray-100 rounded shadow"
+      initial="initial"
+      animate="animate"
+      variants={variants}
+    >
       <article className="flex flex-col">
         <label
           className="text-lg text-indigo-800 font-bold"
@@ -61,7 +78,7 @@ const Form = (props) => {
           </button>
         </section>
       </article>
-    </form>
+    </motion.form>
   );
 };
 

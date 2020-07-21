@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { SEARCHED } from "../constants/weatherTypes";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  SEARCHED,
+  NOT_SEARCHING,
+  FAILED_SEARCH,
+} from "../constants/weatherTypes";
 import {
   infoClosed,
   infoOpened,
@@ -9,6 +14,19 @@ import CurrentWeather from "./CurrentWeather";
 import DailyInfo from "./DailyInfo";
 import DetailedInfo from "./DetailedInfo";
 import { SM, MD, LG, XL } from "../constants/mediaQueryTypes";
+import StatusAlert from "./StatusAlert";
+
+const variants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: { staggerChildren: 0.25 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { staggerChildren: 0.25, when: "afterChildren" },
+  },
+};
 
 const Weather = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -19,26 +37,37 @@ const Weather = (props) => {
     else if (screenSize === "XL" && screenWidth < XL) return true;
     else return false;
   };
-
   useEffect(() => {
     const changeScreenWidth = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", changeScreenWidth);
-    console.log(screenWidth);
+    // console.log(screenWidth);
     return () =>
       window.removeEventListener("resize", changeScreenWidth);
   }, [screenWidth]);
 
   const changeShowMode = (e) => {
-    // console.log(props.detailedInfoIsOpen);
     e.preventDefault();
-    if (props.detailedInfoIsOpen) props.infoClosed();
-    else props.infoOpened();
+    if (props.detailedInfoIsOpen) {
+      props.infoClosed();
+    } else {
+      props.infoOpened();
+    }
   };
   return (
-    <>
-      {props.searchStatus === SEARCHED ? (
-        <article className="grid md:grid-rows-2 md:grid-flow-col my-5 gap-4">
-          <CurrentWeather gridSpan="md:col-span-2 md:row-span-1 order-first" />
+    <AnimatePresence exitBeforeEnter>
+      {props.searchStatus === SEARCHED && (
+        <motion.article
+          className="grid md:grid-rows-2 md:grid-flow-col my-5 gap-5 w-full"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={variants}
+          key="test"
+        >
+          <CurrentWeather
+            gridSpan="md:col-span-1 md:row-span-1 order-first"
+            key="currentWeatherInformation"
+          />
           {checkScreenSize("MD") ? (
             true && (
               <>
@@ -50,24 +79,55 @@ const Weather = (props) => {
                   Show More
                 </button>
                 {props.detailedInfoIsOpen && (
-                  <>
-                    <DailyInfo gridSpan="md:col-span-1 md:row-span-1 order-3" />
-                    <DetailedInfo gridSpan="md:row-span-1 order-2" />
-                  </>
+                  <AnimatePresence>
+                    <DetailedInfo
+                      gridSpan="md:row-span-1 order-2"
+                      title="More Information"
+                      key="detailedInfo"
+                    />
+                    <DailyInfo
+                      gridSpan="md:col-span-1 md:row-span-1 order-3"
+                      title="Daily"
+                      key="dailyInfo"
+                    />
+                  </AnimatePresence>
                 )}
               </>
             )
           ) : (
-            <>
-              <DailyInfo gridSpan="md:col-span-1 md:row-span-1 order-3" />
-              <DetailedInfo gridSpan="md:row-span-1 order-2" />
-            </>
+            <AnimatePresence>
+              <DetailedInfo
+                gridSpan="md:row-span-1 order-2"
+                title="More Information"
+                flex="flex flex-col"
+                key="detailedInfo2"
+              />
+              <DailyInfo
+                gridSpan="md:col-span-1 md:row-span-1 order-3"
+                title="Daily"
+                key="dailyInfo2"
+              />
+            </AnimatePresence>
           )}
-        </article>
-      ) : (
-        <CurrentWeather />
+        </motion.article>
       )}
-    </>
+
+      {props.searchStatus === NOT_SEARCHING && (
+        <StatusAlert
+          icon="location_off"
+          text="Start by searching for a city"
+          key="notSearchingStatusAlert"
+        />
+      )}
+      {props.searchStatus === FAILED_SEARCH && (
+        <StatusAlert
+          icon="wrong_location"
+          iconColor="text-red-600"
+          text="Invalid city name"
+          key="failedSearchStatusAlert"
+        />
+      )}
+    </AnimatePresence>
   );
 };
 

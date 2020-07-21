@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
 import InfoSection from "./InfoSection";
 import convertTime from "../helpers/convertTime";
 import TimeOfDay from "./TimeOfDay";
+import withWeatherContainer from "../hocs/withWeatherContainer";
 
 const DetailedInfo = (props) => {
   const hPaToPascals = (hPa) => {
@@ -13,16 +13,7 @@ const DetailedInfo = (props) => {
     return Math.round(meter * 0.000621371);
   };
   return (
-    // <CSSTransition
-    //   in={props.detailedInfoIsOpen}
-    //   timeout={200}
-    //   classNames="moreInfo"
-    //   unmountOnExit
-    // >
-    <article
-      className={`weatherCard bg-gray-600 
-      flex flex-col ${props.gridSpan || ""}`}
-    >
+    <article className="p-5 flex flex-col h-full">
       <section className="pt-2 mb-5 flex flex-row flex-wrap justify-around">
         <div className="flex flex-col items-center mx-2">
           <i className="material-icons relative text-orange-400">
@@ -31,7 +22,7 @@ const DetailedInfo = (props) => {
               arrow_drop_up
             </i>
           </i>
-          <p className="text-lg">
+          <p className="text-xl">
             Sunrise at{" "}
             {convertTime(props.searchCurrent.sunrise, false)}
           </p>
@@ -44,7 +35,7 @@ const DetailedInfo = (props) => {
               arrow_drop_down
             </i>
           </i>
-          <p className="text-lg">
+          <p className="text-xl">
             Sunset at {convertTime(props.searchCurrent.sunset, false)}
           </p>
         </div>
@@ -52,19 +43,19 @@ const DetailedInfo = (props) => {
       <section className="flex flex-row flex-wrap justify-center divide-x divide-gray-700">
         <TimeOfDay title="Morning">
           {Math.round(props.searchDaily[0].temp.morn)}
-          &deg;
+          &deg;F
         </TimeOfDay>
         <TimeOfDay title="Day">
           {Math.round(props.searchDaily[0].temp.day)}
-          &deg;
+          &deg;F
         </TimeOfDay>
         <TimeOfDay title="Evening">
           {Math.round(props.searchDaily[0].temp.eve)}
-          &deg;
+          &deg;F
         </TimeOfDay>
         <TimeOfDay title="Night">
           {Math.round(props.searchDaily[0].temp.night)}
-          &deg;
+          &deg;F
         </TimeOfDay>
       </section>
 
@@ -115,7 +106,6 @@ const DetailedInfo = (props) => {
         />
       </section>
     </article>
-    // </CSSTransition>
   );
 };
 
@@ -128,4 +118,4 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState)(DetailedInfo);
+export default connect(mapState)(withWeatherContainer(DetailedInfo));

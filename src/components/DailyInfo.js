@@ -1,29 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
 import getDayOfWeek from "../helpers/getDayOfWeek";
+import withWeatherContainer from "../hocs/withWeatherContainer";
 
 const DailyInfo = (props) => {
   return (
-    // <CSSTransition
-    //   in={props.detailedInfoIsOpen}
-    //   timeout={200}
-    //   classNames="dailyInfo"
-    //   unmountOnExit
-    // >
     <article
-      className={`weatherCard
-      divide-y divide-gray-700 flex flex-col justify-between
-      ${props.gridSpan || ""}`}
+      className={`p-5 divide-y divide-gray-700
+      flex flex-col justify-between`}
     >
       {props.searchDaily.map((day, index) => {
         return index !== 0 ? (
           <section
-            className="flex flex-row justify-between items-center h-full md:flex-col lg:flex-row"
+            className="flex flex-row justify-between items-center h-full md:flex-col lg:flex-row py-2"
             key={day.dt}
           >
-            <p className="text-lg">{getDayOfWeek(day.dt)}</p>
-            <div className="flex flex-row-reverse items-center md:w-full md:justify-between lg:justify-start">
+            <p className="md:text-2xl text-lg lg:text-lg">
+              {getDayOfWeek(day.dt)}
+            </p>
+            <div className="flex flex-row-reverse items-center md:w-full md:justify-between lg:justify-start mt-2">
               <p className="text-lg">
                 {Math.round(day.temp.max)}&deg;F/
                 {Math.round(day.temp.min)}&deg;F
@@ -37,11 +32,11 @@ const DailyInfo = (props) => {
           </section>
         ) : (
           <section
-            className="flex flex-row justify-between items-center h-full md:flex-col lg:flex-row"
+            className="flex flex-row justify-between items-center h-full md:flex-col lg:flex-row py-2"
             key={day.dt}
           >
-            <p className="text-lg">Today</p>
-            <div className="flex flex-row-reverse items-center md:w-full md:justify-between lg:justify-start">
+            <p className="md:text-2xl text-lg lg:text-lg">Today</p>
+            <div className="flex flex-row-reverse items-center md:w-full md:justify-between lg:justify-start mt-2">
               <p className="text-lg">
                 {Math.round(day.temp.max)}&deg;F/
                 {Math.round(day.temp.min)}&deg;F
@@ -56,7 +51,6 @@ const DailyInfo = (props) => {
         );
       })}
     </article>
-    // </CSSTransition>
   );
 };
 
@@ -67,4 +61,4 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState)(DailyInfo);
+export default connect(mapState)(withWeatherContainer(DailyInfo));
