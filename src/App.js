@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
 
@@ -22,10 +21,4 @@ const App = () => {
   );
 };
 
-const mapState = (state) => {
-  return {
-    detailedInfoIsOpen: state.detailedInfoIsOpen,
-  };
-};
-
-export default connect(mapState)(App);
+export default App;

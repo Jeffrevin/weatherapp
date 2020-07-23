@@ -13,10 +13,11 @@ const CurrentWeather = (props) => {
 };
 
 const mapState = (state) => {
+  const { searchResult, searchHourly, timestamp } = state.weatherData;
   return {
-    searchResult: state.searchResult,
-    searchHourly: state.searchHourly,
-    timestamp: state.timestamp,
+    searchResult,
+    searchHourly,
+    timestamp,
   };
 };
 

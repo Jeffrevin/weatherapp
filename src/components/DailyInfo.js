@@ -55,9 +55,11 @@ const DailyInfo = (props) => {
 };
 
 const mapState = (state) => {
+  const { searchDaily } = state.weatherData;
+  const { detailedInfoIsOpen } = state.infoStatus;
   return {
-    searchDaily: state.searchDaily,
-    detailedInfoIsOpen: state.detailedInfoIsOpen,
+    searchDaily,
+    detailedInfoIsOpen,
   };
 };
 

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import weatherReducer from "./weather/weatherReducer";
+import rootReducer from "./weather/reducers/rootReducer";
 
-const store = createStore(weatherReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

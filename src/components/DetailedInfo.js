@@ -4,6 +4,7 @@ import InfoSection from "./InfoSection";
 import convertTime from "../helpers/convertTime";
 import TimeOfDay from "./TimeOfDay";
 import withWeatherContainer from "../hocs/withWeatherContainer";
+import { HOURS_MINUTES } from "../constants/timeModes";
 
 const DetailedInfo = (props) => {
   const hPaToPascals = (hPa) => {
@@ -24,10 +25,9 @@ const DetailedInfo = (props) => {
           </i>
           <p className="text-xl">
             Sunrise at{" "}
-            {convertTime(props.searchCurrent.sunrise, false)}
+            {convertTime(props.searchCurrent.sunrise, HOURS_MINUTES)}
           </p>
         </div>
-
         <div className="flex flex-col items-center mx-2">
           <i className="material-icons relative text-yellow-500">
             wb_sunny
@@ -36,7 +36,8 @@ const DetailedInfo = (props) => {
             </i>
           </i>
           <p className="text-xl">
-            Sunset at {convertTime(props.searchCurrent.sunset, false)}
+            Sunset at{" "}
+            {convertTime(props.searchCurrent.sunset, HOURS_MINUTES)}
           </p>
         </div>
       </section>
@@ -61,7 +62,7 @@ const DetailedInfo = (props) => {
 
       <section
         className="divide-y divide-gray-700 h-full
-      flex flex-col justify-around"
+        flex flex-col justify-around"
       >
         <InfoSection
           infoType="Cloudiness"
@@ -110,11 +111,17 @@ const DetailedInfo = (props) => {
 };
 
 const mapState = (state) => {
+  const {
+    searchCurrent,
+    searchStatus,
+    searchDaily,
+  } = state.weatherData;
+  const { detailedInfoIsOpen } = state.infoStatus;
   return {
-    searchCurrent: state.searchCurrent,
-    searchStatus: state.searchStatus,
-    searchDaily: state.searchDaily,
-    detailedInfoIsOpen: state.detailedInfoIsOpen,
+    searchCurrent,
+    searchStatus,
+    searchDaily,
+    detailedInfoIsOpen,
   };
 };
 

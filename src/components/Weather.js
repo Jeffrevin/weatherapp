@@ -28,6 +28,12 @@ const variants = {
   },
 };
 
+const showButtonVariants = {
+  initial: { scaleX: 0 },
+  animate: { scaleX: 1 },
+  exit: { scaleX: 0 },
+};
+
 const Weather = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const checkScreenSize = (screenSize) => {
@@ -49,6 +55,11 @@ const Weather = (props) => {
     e.preventDefault();
     if (props.detailedInfoIsOpen) {
       props.infoClosed();
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     } else {
       props.infoOpened();
     }
@@ -62,7 +73,7 @@ const Weather = (props) => {
           animate="animate"
           exit="exit"
           variants={variants}
-          key="test"
+          key="weatherGrid"
         >
           <CurrentWeather
             gridSpan="md:col-span-1 md:row-span-1 order-first"
@@ -71,27 +82,38 @@ const Weather = (props) => {
           {checkScreenSize("MD") ? (
             true && (
               <>
-                <button
+                <motion.button
                   className="rounded-full px-2 py-1 bg-blue-800 md:hidden block
-              text-white hover:bg-blue-900 duration-100 hover:shadow focus:outline-none"
+                  text-white hover:bg-blue-900 duration-100 hover:shadow focus:outline-none"
                   onClick={changeShowMode}
+                  variants={showButtonVariants}
                 >
-                  Show More
-                </button>
-                {props.detailedInfoIsOpen && (
-                  <AnimatePresence>
+                  {props.detailedInfoIsOpen
+                    ? "Show Less"
+                    : "Show More"}
+                </motion.button>
+                <AnimatePresence>
+                  {props.detailedInfoIsOpen && (
                     <DetailedInfo
                       gridSpan="md:row-span-1 order-2"
                       title="More Information"
-                      key="detailedInfo"
+                      key="detailedInfo1"
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
                     />
+                  )}
+                  {props.detailedInfoIsOpen && (
                     <DailyInfo
                       gridSpan="md:col-span-1 md:row-span-1 order-3"
                       title="Daily"
-                      key="dailyInfo"
+                      key="dailyInfo1"
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
                     />
-                  </AnimatePresence>
-                )}
+                  )}
+                </AnimatePresence>
               </>
             )
           ) : (
@@ -111,7 +133,6 @@ const Weather = (props) => {
           )}
         </motion.article>
       )}
-
       {props.searchStatus === NOT_SEARCHING && (
         <StatusAlert
           icon="location_off"
@@ -132,9 +153,11 @@ const Weather = (props) => {
 };
 
 const mapState = (state) => {
+  const { searchStatus } = state.weatherData;
+  const { detailedInfoIsOpen } = state.infoStatus;
   return {
-    searchStatus: state.searchStatus,
-    detailedInfoIsOpen: state.detailedInfoIsOpen,
+    searchStatus,
+    detailedInfoIsOpen,
   };
 };
 
