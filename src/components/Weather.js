@@ -10,9 +10,9 @@ import {
   infoClosed,
   infoOpened,
 } from "../store/weather/weatherAction";
-import CurrentWeather from "./CurrentWeather";
 import DailyInfo from "./DailyInfo";
 import DetailedInfo from "./DetailedInfo";
+import CurrentWeather from "./currentWeather";
 import { SM, MD, LG, XL } from "../constants/mediaQueryTypes";
 import StatusAlert from "./StatusAlert";
 
