@@ -12,7 +12,7 @@ const withWeatherContainer = (WeatherContent) => {
     <motion.article
       className={`weatherCard ${props.gridSpan || ""} ${
         props.flex || ""
-      } ${!props.title && "p-5"}`}
+      } ${!props.title && "p-0 bg-transparent"}`}
       variants={variants}
       // initial="initial"
       // animate="animate"
@@ -24,7 +24,7 @@ const withWeatherContainer = (WeatherContent) => {
       {props.title && (
         <h2
           className="bg-gray-700 w-full
-        text-center text-white text-4xl rounded-t-sm"
+          text-center text-white text-4xl rounded-t-sm"
         >
           {props.title}
         </h2>

@@ -13,6 +13,24 @@ const App = () => {
           <div className="w-full px-2 -my-12 pb-3 flex flex-col items-center">
             <Form />
             <Weather />
+            {/* <div className="grid grid-rows-4 gap-5 grid-flow-col">
+              <img
+                src="http://placekitten.com/400/400"
+                className="bg-blue-500 row-span-1"
+              />
+              <img
+                src="http://placekitten.com/400/400"
+                className="bg-blue-500 row-span-2"
+              />
+              <img
+                src="http://placekitten.com/400/400"
+                className="bg-blue-500 row-span-1"
+              />
+              <img
+                src="http://placekitten.com/400/400"
+                className="bg-blue-500 row-span-3"
+              />
+            </div> */}
           </div>
         </main>
       </div>

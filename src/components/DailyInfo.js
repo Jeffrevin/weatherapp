@@ -6,8 +6,8 @@ import withWeatherContainer from "../hocs/withWeatherContainer";
 const DailyInfo = (props) => {
   return (
     <article
-      className={`p-5 divide-y divide-gray-700
-      flex flex-col justify-between`}
+      className="p-5 divide-y divide-gray-700
+      flex flex-col justify-between h-full"
     >
       {props.searchDaily.map((day, index) => {
         return index !== 0 ? (

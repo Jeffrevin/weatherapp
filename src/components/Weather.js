@@ -76,7 +76,8 @@ const Weather = (props) => {
           key="weatherGrid"
         >
           <CurrentWeather
-            gridSpan="md:col-span-1 md:row-span-1 order-first"
+            gridSpan="md:col-span-1 md:row-span-1 order-first
+            grid grid-rows-1 gap-5 content-between"
             key="currentWeatherInformation"
           />
           {checkScreenSize("MD") ? (
@@ -127,6 +128,7 @@ const Weather = (props) => {
               <DailyInfo
                 gridSpan="md:col-span-1 md:row-span-1 order-3"
                 title="Daily"
+                flex="flex flex-col"
                 key="dailyInfo2"
               />
             </AnimatePresence>
